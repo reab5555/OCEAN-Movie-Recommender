@@ -13,7 +13,7 @@ We have a dataset of movies and aggregated averages of the personality traits fo
    
 The algorithm loads and preprocesses the dataset of movie attributes and user personality traits (we use a data warehouse to store the data). It then computes movie recommendations based on the cosine similarity between a user's personality traits and the movies attributes like their average aggregated traits measures, gender, age, and unique keywords.
    
-Finally, a GUI application simulation that interacts with the dataset manage user movie preferences based on their Big Five personality traits. It allows a user to log in with their ID to load and select their liked movies. User selections are used to update personality trait data in the dataset, potentially altering the dataset for future recommendations.
+Finally, a GUI application simulation that interacts with the dataset manage user movie preferences based on their Big Five personality traits. It allows a user to log in with their ID to load and select their liked movies. User selections are used to update personality trait data in the dataset based on their liked movies, potentially altering the dataset for future recommendations.
 
 
 
