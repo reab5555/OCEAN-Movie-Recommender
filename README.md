@@ -12,7 +12,7 @@ By evaluating the scoring of these traits in users, the algorithm is able to pre
 ## Methodology   
 The MyPersonality dataset derived from a Facebook app comprises personality scores of user's that liked certain movies, along with demographic and profile data from users who consented to share their information for research (Approximately 1000 users).   
 
-The dataset we have contains a list of about 850 movies facebook user's liked and their aggregated average measures of the users in terms of each personality trait, including age and gender (currently, data per user is not available). the average movie ratings are from IMDB website and are not based on MyPersonality users.
+The dataset we have contains a list of about 850 movie titles facebook user's liked and their aggregated average measures of the users in terms of each personality trait, including age and gender (currently, data per user is not available). the average movie ratings are from IMDB website and are not based on MyPersonality users.
     
 First, each new user is given a personality questionnaire that measures their Big Five traits (NEO PI-R).     
      
