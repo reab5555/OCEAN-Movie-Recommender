@@ -10,7 +10,7 @@ The Big Five or OCEAN model in psychology identifies five broad personality trai
 By evaluating the scoring of these traits in users, the algorithm is able to predict the movies that best suit their personality type.
    
 ## Methodology
-We have a dataset of movies and aggregated averages of the personality traits for each movie.    
+We have a dataset of about 850 movie titles and aggregated averages of the personality traits for each movie.    
    
 The MyPersonality dataset derived from a Facebook app comprises personality scores of user's that liked certain movies, along with demographic and profile data from users who consented to share their information for research (Approximately 1000 users).   
 
