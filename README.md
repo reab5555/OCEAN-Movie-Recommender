@@ -19,7 +19,7 @@ The algorithm loads and preprocesses the dataset of movie attributes and the mea
    
 Finally, a GUI application simulation that interacts with the dataset manage user movie preferences based on their Big Five personality traits. This simulation allows a user to log in with their ID to select the movies they like. User selections are used to update personality trait and other features data in the dataset based on their liked movies, potentially altering the dataset for future recommendations.
 
-If we have enough user profiles and their features, we can create a more advanced Collaborative Filtering (CF) system and use it to make movie recommendations.
+If we have enough user profiles and their features, we can create a more advanced Collaborative Filtering (CF) system and use it for movie recommendations.
 
 <img src="Diagrams/diagram1.png" width="600" alt="alt text">
 <img src="Diagrams/diagram2.png" width="600" alt="alt text">
