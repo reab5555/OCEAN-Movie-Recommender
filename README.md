@@ -11,7 +11,7 @@ By evaluating these traits in the user, the algorithm is able to predict the mov
 ## Methodology
 We have a dataset of movies and aggregated averages of the personality traits for each movie. The MyPersonality dataset derived from a Facebook app comprises personality scores of user's that liked these movies based on the Big Five traits, along with demographic and profile data from users who consented to share their information for research (Approximately 1000 users). The dataset we have contains a list of about 850 movies that facebook user's liked and their aggregated average measures in terms of each personality trait, including age and gender (data on each user is not currently available).
     
-First, each new user is given a personality questionnaire that measures the Big Five traits (Revised NEO Personality Inventory - NEO PI-R).     
+First, each new user is given a personality questionnaire that measures the Big Five traits (NEO PI-R).     
      
 The algorithm loads and preprocesses the dataset of movie attributes and the measured user personality traits (we use a data warehouse to store the data). It then computes movie recommendations based on the cosine similarity between a user's personality traits and the movies attributes like their average aggregated traits measures, gender, age, and unique keywords.
    
