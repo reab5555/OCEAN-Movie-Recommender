@@ -16,7 +16,7 @@ The MyPersonality dataset derived from a Facebook app comprises personality scor
 
 The dataset we have contains a list of about 850 movies facebook user's liked and their aggregated average measures of the users in terms of each personality trait, including age and gender (currently, data per user is not available). the average movie ratings are from IMDB website and are not based on MyPersonality users.
     
-First, each new user is given a personality questionnaire that measures the Big Five traits (NEO PI-R).     
+First, each new user is given a personality questionnaire that measures their Big Five traits (NEO PI-R).     
      
 The algorithm loads and preprocesses the dataset of movie attributes and the measured user personality traits (we use a data warehouse to store the data). It then computes movie recommendations based on the cosine similarity between a user's personality traits and the movies attributes like their average aggregated traits measures, gender, age, and unique keywords.
    
