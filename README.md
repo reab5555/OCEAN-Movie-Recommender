@@ -14,11 +14,10 @@ The MyPersonality dataset derived from a Facebook app comprises personality scor
 
 The dataset we have contains a list of about 850 movie titles facebook user's liked and their aggregated average measures of the users in terms of each personality trait, including age and gender (currently, data per user is not available).
    
-First, each new user is given a personality questionnaire that measures their Big Five traits (NEO PI-R).     
-     
-The algorithm loads the dataset of movie attributes and their average measured user personality traits (we use a data warehouse to store the data). It then computes movie recommendations based on the cosine similarity between a user's personality traits and the movies aggregated features like their average trait measures, gender, age, and the movie's unique keywords.
-   
-Finally, a GUI application simulation that interacts with the dataset manage user movie preferences based on their Big Five personality traits. This simulation allows a user to log in with their ID to select the movies they like. User selections are used to update personality trait and other features data in the dataset based on their liked movies, potentially altering the dataset for future recommendations.
+1. Each new user is given a personality questionnaire that measures their Big Five traits (NEO PI-R).     
+2. The algorithm loads the dataset of movie attributes and their average measured user personality traits (we use a data warehouse to store the data).
+3. It then computes movie recommendations based on the cosine similarity between a user's personality traits and the movies aggregated features like their average trait measures, gender, age, and the movie's unique keywords.
+4. Finally, a GUI application simulation that interacts with the dataset manage user movie preferences based on their Big Five personality traits. This simulation allows a user to log in with their ID to select the movies they like. User selections are used to update personality trait and other features data in the dataset based on their liked movies, potentially altering the dataset for future recommendations.
    
 In case we have enough user profiles and their features, we can create a more advanced Collaborative Filtering (CF) system and use it for movie recommendations.
 
