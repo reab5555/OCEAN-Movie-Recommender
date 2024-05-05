@@ -1,7 +1,8 @@
 <img src="Diagrams/icon.webp" width="150" alt="alt text">
 
 # OCEAN-Movie-Recommender
-This algorithm is able to recommend movies based on the user's Big Five personality traits (OCEAN - Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism).
+This algorithm is able to recommend movies based on the user's Big Five personality traits.  
+(OCEAN - Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism)   
    
 ## Description
 This algorithm recommends to the user the movies that it thinks are the most suitable based on the user's personality traits according to the Big Five theory.   
