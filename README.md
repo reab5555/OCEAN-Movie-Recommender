@@ -16,7 +16,7 @@ The dataset we have contains a list of about 850 movie titles facebook user's li
    
 First, each new user is given a personality questionnaire that measures their Big Five traits (NEO PI-R).     
      
-The algorithm loads and preprocesses the dataset of movie attributes and their average measured user personality traits (we use a data warehouse to store the data). It then computes movie recommendations based on the cosine similarity between a user's personality traits and the movies aggregated features like their average trait measures, gender, age, and the movie's unique keywords.
+The algorithm loads the dataset of movie attributes and their average measured user personality traits (we use a data warehouse to store the data). It then computes movie recommendations based on the cosine similarity between a user's personality traits and the movies aggregated features like their average trait measures, gender, age, and the movie's unique keywords.
    
 Finally, a GUI application simulation that interacts with the dataset manage user movie preferences based on their Big Five personality traits. This simulation allows a user to log in with their ID to select the movies they like. User selections are used to update personality trait and other features data in the dataset based on their liked movies, potentially altering the dataset for future recommendations.
    
