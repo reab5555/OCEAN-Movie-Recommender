@@ -17,6 +17,8 @@ The algorithm loads and preprocesses the dataset of movie attributes and the mea
    
 Finally, a GUI application simulation that interacts with the dataset manage user movie preferences based on their Big Five personality traits. It allows a user to log in with their ID to load and select their liked movies. User selections are used to update personality trait data in the dataset based on their liked movies, potentially altering the dataset for future recommendations.
 
+<img src="Diagrams/diagram1.png" width="600" alt="alt text">
+<img src="Diagrams/diagram1.png2.png" width="600" alt="alt text">
 
 
 
