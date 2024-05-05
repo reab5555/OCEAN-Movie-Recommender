@@ -24,13 +24,15 @@ Finally, a GUI application simulation that interacts with the dataset manage use
 
 * In case we have enough user profiles and their features, we can create a more advanced Collaborative Filtering (CF) system and use it for movie recommendations.
 
+
+<img src="Diagrams/diagram1.png" width="600" alt="alt text">
+<img src="Diagrams/diagram2.png" width="600" alt="alt text">
+
+
 ```bash
 git clone https://github.com/reab5555/OCEAN-Movie-Recommender.git
 cd OCEAN-Movie-Recommender
 pip install -r requirements.txt
-
-<img src="Diagrams/diagram1.png" width="600" alt="alt text">
-<img src="Diagrams/diagram2.png" width="600" alt="alt text">
 
 
 
