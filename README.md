@@ -21,8 +21,8 @@ The dataset we have contains a list of about 850 movie titles facebook user's li
    
 In case we have enough user profiles and their features, we can create a more advanced Collaborative Filtering (CF) system and use it for movie recommendations.
 
-<img src="Diagrams/diagram1.png" width="600" alt="alt text">
 <img src="Diagrams/diagram2.png" width="600" alt="alt text">
+<img src="Diagrams/diagram1.png" width="600" alt="alt text">
 <img src="Diagrams/radar_graph.png" width="600" alt="alt text">
 <img src="Diagrams/scatterplot_graph.png" width="600" alt="alt text">
 
