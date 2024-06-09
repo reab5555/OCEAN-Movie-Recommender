@@ -88,7 +88,7 @@ def plot_radar_chart(user_profile, recommendations, numeric_data):
         movie_profile = row[categories].values.flatten().tolist()
         movie_profile += movie_profile[:1]
         similarity_score = cosine_similarity([user_profile[:-1]], [row[categories]])[0][0] * 100
-        ax.plot(angles, movie_profile, linewidth=1, linestyle='solid', label=f"{row['movie']} ({similarity_score:.1f}% match)", color=np.random.rand(3,))
+        ax.plot(angles, movie_profile, linewidth=1, linestyle='solid', label=f"{row['movie']} ({similarity_score:.1f}%)", color=np.random.rand(3,))
 
     # Add labels and title
     ax.set_theta_offset(pi / 2)
@@ -117,11 +117,11 @@ def plot_scatter_plot(user_profile, recommendations, numeric_data):
     sns.set(style="whitegrid")
 
     # Plot user profile
-    sns.scatterplot(x=[user_profile_2d[0, 0]], y=[user_profile_2d[0, 1]], s=235, color='blue', marker='o', label='User')
+    sns.scatterplot(x=[user_profile_2d[0, 0]], y=[user_profile_2d[0, 1]], s=235, color='blue', marker='o', label='User', legend=None)
 
     # Plot recommended movies with different colors
     palette = sns.color_palette("husl", len(recommendations))
-    sns.scatterplot(x=rec_numeric_data_2d[:, 0], y=rec_numeric_data_2d[:, 1], s=155, color='gold', marker='*', legend=None)
+    sns.scatterplot(x=rec_numeric_data_2d[:, 0], y=rec_numeric_data_2d[:, 1], s=165, color='gold', marker='*', legend=None)
 
     # Plot lines and similarity scores
     for idx, (x, y) in enumerate(rec_numeric_data_2d):
