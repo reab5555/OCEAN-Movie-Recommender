@@ -134,9 +134,14 @@ def calculate_scores():
         max_score = 2 * total_questions[trait]
         scores[trait] = scores[trait] / max_score
 
+    print("\nProfile Big Five Personality Scores:")
+    for trait, score in scores.items():
+        print(f"{trait}: {score:.2f}")
+
     current_datetime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    user_profile = [gender, age] + [scores[trait] for trait in ["ope", "con", "ext", "agr", "neu"]]
+    # Ensure the user_profile list is in the correct order
+    user_profile = [age, gender] + [round(scores[trait], 2) for trait in ["ope", "agr", "neu", "ext", "con"]]
     user_id = ''.join([str(random.randint(0, 9)) for _ in range(6)])
 
     # prepare the dataframe with the user unique parameters and features
@@ -144,9 +149,13 @@ def calculate_scores():
         'user_creation_date': [current_datetime],
         'user_id': [user_id],
         'user_name': [user_name],
-        'gender': [gender],
         'age': [age],
-        **{trait: [scores[trait]] for trait in scores.keys()}
+        'gender': [gender],
+        'ope': [scores['ope']],
+        'agr': [scores['agr']],
+        'neu': [scores['neu']],
+        'con': [scores['con']],
+        'ext': [scores['ext']]
     })
     # Assuming 'user_creation_date' is currently a string representing datetime
     user_data['user_creation_date'] = pd.to_datetime(user_data['user_creation_date'])
@@ -156,7 +165,7 @@ def calculate_scores():
     user_data['user_creation_date'] = pd.to_datetime(user_data['user_creation_date'])
     user_data['user_id'] = user_data['user_id'].astype(str)
     user_data['user_name'] = user_data['user_name'].astype(str)
-    user_data['gender'] = user_data['gender'].astype(int)
     user_data['age'] = user_data['age'].astype(int)
+    user_data['gender'] = user_data['gender'].astype(int)
 
     return user_id, user_profile, user_data
