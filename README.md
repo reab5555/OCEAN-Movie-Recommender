@@ -2,10 +2,9 @@
 
 # OCEAN-Movie-Recommender
 This is a framework for an algorithm that is able to recommend movies based on the user's Big Five personality traits.  
-(OCEAN - Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism)   
    
 ## Description
-The Big Five or OCEAN model in psychology identifies five broad personality traits: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. These traits are used to describe human personality and predict behavior.
+The Big Five or OCEAN (Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism) model in psychology identifies five broad personality traits: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. These traits are used to describe human personality and predict behavior.
    
 By evaluating the scoring of these traits in users, the algorithm is able to predict the movies that best suit their personality type.
    
