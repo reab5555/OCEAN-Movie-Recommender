@@ -21,10 +21,24 @@ The dataset we have contains a list of about 850 movie titles facebook user's li
    
 In case we have enough user profiles and their features, we can create a more advanced Collaborative Filtering (CF) system and use it for movie recommendations.
 
-<img src="Diagrams/diagram2.png" width="600" alt="alt text">
-<img src="Diagrams/diagram1.png" width="600" alt="alt text">
-<img src="Diagrams/radar_graph.png" width="600" alt="alt text">
-<img src="Diagrams/scatterplot_graph.png" width="600" alt="alt text">
+## Sample Data
+
+Below is a sample of the dataset, showing the aggregated Big Five personality traits:
+
+| Movie                    | Ope     | Con     | Ext     | Agr     | Neu     | Rating | Year | Age     | Gender | Runtime |
+|--------------------------|---------|---------|---------|---------|---------|--------|------|---------|--------|---------|
+| The Shawshank Redemption | 0.2652  | -0.044  | -0.0617 | 0.0167  | 0.1634  | 9.3    | 1994 | 27.6206 | 0.504  | 142     |
+| The Godfather            | 0.3176  | -0.0699 | -0.0391 | -0.207  | 0.1539  | 9.2    | 1972 | 25.3429 | 0.4016 | 175     |
+| The Dark Knight          | 0.2892  | -0.1655 | -0.1424 | -0.0311 | 0.1253  | 9      | 2008 | 21.6291 | 0.4491 | 152     |
+| The Godfather Part II    | 0.3743  | 0.0303  | 0.0188  | -0.3198 | 0.1378  | 9      | 1974 | 27.5117 | 0.3408 | 202     |
+| 12 Angry Men             | 0.5011  | -0.1799 | -0.2688 | -0.1959 | 0.0727  | 8.9    | 1957 | 25.0043 | 0.3797 | 96      |
+
+These scores represent the average personality trait levels of users who liked each movie.
+
+<img src="Diagrams/diagram2.png" width="500" alt="alt text">
+<img src="Diagrams/diagram1.png" width="500" alt="alt text">
+<img src="Diagrams/radar_graph.png" width="500" alt="alt text">
+<img src="Diagrams/scatterplot_graph.png" width="500" alt="alt text">
 
 ```bash
 git clone https://github.com/reab5555/OCEAN-Movie-Recommender.git
