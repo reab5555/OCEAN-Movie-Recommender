@@ -26,7 +26,7 @@ In case we have enough user profiles and their features, we can create a more ad
 Below is a sample of the dataset, showing the aggregated Big Five personality traits:
 
 | Movie                    | Ope     | Con     | Ext     | Agr     | Neu     | Year | Age     | Gender | Runtime |
-|--------------------------|---------|---------|---------|---------|---------|--------|------|---------|--------|---------|
+|--------------------------|---------|---------|---------|---------|---------|------|---------|--------|------ --|
 | The Shawshank Redemption | 0.2652  | -0.044  | -0.0617 | 0.0167  | 0.1634  | 1994 | 27.6206 | 0.504  | 142     |
 | The Godfather            | 0.3176  | -0.0699 | -0.0391 | -0.207  | 0.1539  | 1972 | 25.3429 | 0.4016 | 175     |
 | The Dark Knight          | 0.2892  | -0.1655 | -0.1424 | -0.0311 | 0.1253  | 2008 | 21.6291 | 0.4491 | 152     |
