@@ -15,7 +15,7 @@ The Big Five or OCEAN (Openness, Conscientiousness, Extraversion, Agreeableness,
    
 By evaluating the scoring of these traits in users, the algorithm is able to predict the movies that best suit their personality type.   
 
-The preassumption is that users with similar perosnality traits and gender will more likely prefer movies from specific genres and with specific keywords.    
+The preassumption is that users with similar perosnality traits and gender will more likely prefer movies from specific genres and movies with specific keywords.    
 
 ## myPersonality
   
