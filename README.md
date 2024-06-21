@@ -62,7 +62,6 @@ Here we can see an example of movies and their keywords.
 <img src="Diagrams/diagram2.png" width="500" alt="alt text">
 <img src="Diagrams/diagram1.png" width="500" alt="alt text">
 <img src="Diagrams/radar_graph.png" width="500" alt="alt text">
-<img src="Diagrams/scatterplot_graph.png" width="500" alt="alt text">
 
 ----------------------------------------------------------------------------------------------------------------
 
