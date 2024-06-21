@@ -37,6 +37,8 @@ Below is a sample of the dataset, showing the aggregated Big Five personality tr
 
 These scores represent the average personality trait levels of users who liked each movie.
 
+----------------------------------------------------------------------------------------------------------------
+
 | Movie          | Keywords                                                                                                                                                                           |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | The Departed   | police, undercover, boston, massachusetts, gangster, irish-american, crime boss, friends, remake, mobster, organized crime, mafia, undercover cop, mole, state police, police training, realtor |
