@@ -121,53 +121,6 @@ def plot_radar_chart(user_profile, recommendations, feature_data):
     plt.show()
 
 
-def plot_scatter_plot(user_profile, recommendations, feature_data):
-    # Merge recommendations with feature_data to ensure alignment
-    recommendations = recommendations.merge(feature_data, left_index=True, right_index=True).reset_index(drop=True)
-
-    # Apply PCA to reduce dimensions to 2
-    pca = PCA(n_components=2)
-    pca.fit(feature_data)
-    user_profile_2d = pca.transform(
-        [np.concatenate((user_profile, np.zeros(len(feature_data.columns) - len(user_profile))))])
-    rec_feature_data_2d = pca.transform(recommendations[feature_data.columns])
-
-    # Create a scatter plot
-    plt.figure(figsize=(14, 10))
-    sns.set(style="whitegrid")
-
-    # Plot user profile
-    sns.scatterplot(x=[user_profile_2d[0, 0]], y=[user_profile_2d[0, 1]], s=235, color='blue', marker='o', label='User',
-                    legend=None)
-
-    # Plot recommended movies with different colors
-    palette = sns.color_palette("husl", len(recommendations))
-    sns.scatterplot(x=rec_feature_data_2d[:, 0], y=rec_feature_data_2d[:, 1], s=165, color='gold', marker='*',
-                    legend=None)
-
-    # Plot lines and similarity scores
-    for idx, (x, y) in enumerate(rec_feature_data_2d):
-        plt.plot([user_profile_2d[0, 0], x], [user_profile_2d[0, 1], y], 'k-', lw=0.5)
-
-        # Calculate similarity score
-        similarity_score = \
-        cosine_similarity([np.concatenate((user_profile, np.zeros(len(feature_data.columns) - len(user_profile))))],
-                          [recommendations.iloc[idx][feature_data.columns]])[0][0] * 100
-
-        # Display similarity score
-        mid_x = (user_profile_2d[0, 0] + x) / 2
-        mid_y = (user_profile_2d[0, 1] + y) / 2
-        plt.text(mid_x, mid_y, f"{similarity_score:.1f}%", fontsize=8)
-
-    # Annotate movie titles with different colors
-    for i, row in recommendations.iterrows():
-        plt.text(rec_feature_data_2d[i, 0], rec_feature_data_2d[i, 1], f"{row['movie']} ({row['year']})",
-                 horizontalalignment='left', size='medium', color='black', weight='semibold')
-
-    plt.title('Top Movie Recommendations')
-    plt.show()
-
-
 if __name__ == '__main__':
     user_id, user_profile, user_data = calculate_scores()
 
@@ -184,6 +137,4 @@ if __name__ == '__main__':
     recommendations_similarity = get_recommendations(user_profile, feature_data, data, 10, 5.0)
     print("\n\nTop 10 Movie Recommendations (Rating >= 5):")
     print(recommendations_similarity.to_string(index=False, justify='left'))
-
     plot_radar_chart(user_profile, recommendations_similarity, feature_data)
-    plot_scatter_plot(user_profile, recommendations_similarity, feature_data)

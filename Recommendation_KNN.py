@@ -108,52 +108,11 @@ def plot_radar_chart(user_profile, recommendations, feature_data):
     plt.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
     plt.show()
 
-def plot_scatter_plot(user_profile, recommendations, feature_data, distances):
-    # Apply PCA to reduce dimensions to 2
-    pca = PCA(n_components=2)
-    pca.fit(feature_data)
-
-    # Extend user profile with zeros for keyword and genre features
-    extended_user_profile = np.concatenate((user_profile, np.zeros(len(feature_data.columns) - len(user_profile))))
-    user_profile_2d = pca.transform([extended_user_profile])
-
-    rec_feature_data = feature_data.loc[recommendations.index]
-    rec_feature_data_2d = pca.transform(rec_feature_data)
-
-    # Create a scatter plot
-    plt.figure(figsize=(14, 10))
-    sns.set(style="whitegrid")
-
-    # Plot user profile
-    sns.scatterplot(x=[user_profile_2d[0, 0]], y=[user_profile_2d[0, 1]], s=235, color='blue', marker='o', label='User',
-                    legend=None)
-
-    # Plot recommended movies with different colors
-    palette = sns.color_palette("husl", len(recommendations))
-    sns.scatterplot(x=rec_feature_data_2d[:, 0], y=rec_feature_data_2d[:, 1], s=165, color='gold', marker='*',
-                    legend=None)
-
-    # Plot lines and similarity scores
-    for idx, (x, y) in enumerate(rec_feature_data_2d):
-        plt.plot([user_profile_2d[0, 0], x], [user_profile_2d[0, 1], y], 'k-', lw=0.5)
-
-        # Display distance
-        mid_x = (user_profile_2d[0, 0] + x) / 2
-        mid_y = (user_profile_2d[0, 1] + y) / 2
-        plt.text(mid_x, mid_y, f"{distances[idx]:.2f}", fontsize=8)
-
-    # Annotate movie titles with different colors
-    for i, (_, row) in enumerate(recommendations.iterrows()):
-        plt.text(rec_feature_data_2d[i, 0], rec_feature_data_2d[i, 1], f"{row['movie']} ({row['year']})",
-                 horizontalalignment='left', size='medium', color='black', weight='semibold')
-
-    plt.title('Top Movie Recommendations')
-    plt.show()
 
 if __name__ == '__main__':
     user_id, user_profile, user_data = calculate_scores()
 
-    user_profile = user_profile[1:6]  # Ensure the user profile contains the 5 relevant features (skip age and gender)
+    user_profile = user_profile[1:7]  # Ensure the user profile contains the 6 relevant features (skip age)
     # Save to BigQuery with appending new data rather than replacing
     to_gbq(
         user_data,
@@ -165,4 +124,3 @@ if __name__ == '__main__':
     print("\n\nTop 10 Movie Recommendations (Rating >= 5):")
     print(recommendations_knn.to_string(index=False, justify='left'))
     plot_radar_chart(user_profile, recommendations_knn, feature_data)
-    plot_scatter_plot(user_profile, recommendations_knn, feature_data, distances)
