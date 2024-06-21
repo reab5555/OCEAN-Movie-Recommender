@@ -37,13 +37,21 @@ data = data[data['keywords'] != 'None']
 # Handling keywords - transform into one-hot encoded columns
 keywords_encoded = data['keywords'].str.get_dummies(sep=', ')
 
-# Create a consolidated genre column from binary genre columns
-genre_columns = [col for col in data.columns if col.startswith('genre_')]
-data['genres'] = data.apply(lambda row: ', '.join([col.split('_')[1] for col in genre_columns if row[col] == 1]),
-                            axis=1)
+# Define genre columns
+genre_columns = ['genre_family', 'genre_fantasy', 'genre_sport', 'genre_biography', 'genre_crime',
+                 'genre_romance', 'genre_animation', 'genre_music', 'genre_comedy', 'genre_war',
+                 'genre_sci_fi', 'genre_horror', 'genre_western', 'genre_thriller', 'genre_mystery',
+                 'genre_drama', 'genre_action', 'genre_history', 'genre_documentary', 'genre_musical',
+                 'genre_adventure']
 
-# Combine numerical features and one-hot encoded keywords
-feature_data = pd.concat([data[numerical_cols], keywords_encoded], axis=1)
+# Create a consolidated genre column from binary genre columns
+data['genres'] = data[genre_columns].apply(
+    lambda row: ', '.join([col.split('_')[1] for col, value in row.items() if value == 1]),
+    axis=1
+)
+
+# Combine numerical features, keywords, and genres
+feature_data = pd.concat([data[numerical_cols], keywords_encoded, data[genre_columns]], axis=1)
 
 # Fill any residual NaN values with 0
 feature_data = feature_data.fillna(0)
