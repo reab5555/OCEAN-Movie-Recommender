@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import NearestNeighbors
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.metrics.pairwise import cosine_similarity
 from google.cloud import bigquery
 from pandas_gbq import to_gbq
 from Questionnaire import calculate_scores
@@ -21,13 +21,14 @@ client = bigquery.Client()
 project_id = "python-code-running"
 dataset_id = "moviesets"
 table_id = "movies_big_five_set"
+
 # Load data from BigQuery
 query = f"SELECT * FROM `{project_id}.{dataset_id}.{table_id}`"
 data = client.query(query).to_dataframe()
 
 # Normalize numerical features
 scaler = StandardScaler()
-numerical_cols = ['ope', 'con', 'ext', 'agr', 'neu']
+numerical_cols = ['gender', 'ope', 'con', 'ext', 'agr', 'neu']
 data[numerical_cols] = scaler.fit_transform(data[numerical_cols])
 
 # Filter out movies with 'None' keywords
@@ -41,32 +42,40 @@ genre_columns = [col for col in data.columns if col.startswith('genre_')]
 data['genres'] = data.apply(lambda row: ', '.join([col.split('_')[1] for col in genre_columns if row[col] == 1]),
                             axis=1)
 
-# Combine numerical features and keywords
+# Combine numerical features and one-hot encoded keywords
 feature_data = pd.concat([data[numerical_cols], keywords_encoded], axis=1)
 
 # Fill any residual NaN values with 0
 feature_data = feature_data.fillna(0)
 
 
-def get_knn_recommendations(user_profile, feature_data, data, top_n, min_rating):
+def get_recommendations(user_profile, feature_data, data, top_n, min_rating):
     # Extend user profile with zeros for keyword features
     extended_user_profile = np.concatenate((user_profile, np.zeros(len(feature_data.columns) - len(user_profile))))
 
-    knn = NearestNeighbors(n_neighbors=top_n)
-    knn.fit(feature_data)
-    distances, indices = knn.kneighbors([extended_user_profile])
+    # Calculate similarity scores
+    similarity_scores = cosine_similarity([extended_user_profile], feature_data)
 
-    recommendations = data.iloc[indices[0]]
-    recommendations = recommendations[recommendations['rating'] >= min_rating]
-    recommendations = recommendations.head(top_n)
+    # Add similarity scores to the data
+    data['Recommendation_Score'] = similarity_scores[0] * 100
 
-    return recommendations[['movie', 'year', 'runtime', 'rating', 'genres']], distances[0]
+    # Filter by minimum rating and sort by recommendation score
+    filtered_data = data[data['rating'] >= min_rating]
+    recommendations = filtered_data.sort_values(by='Recommendation_Score', ascending=False).head(top_n)
+
+    # Format recommendation score
+    recommendations['Recommendation_Score'] = recommendations['Recommendation_Score'].apply(lambda x: f"{x:.0f}%")
+
+    return recommendations[['Recommendation_Score', 'movie', 'year', 'runtime', 'rating', 'genres']]
 
 
 def plot_radar_chart(user_profile, recommendations, feature_data):
-    # Select only the top 5 recommendations and the numerical columns
+    # Select only the top 5 recommendations
     recommendations = recommendations.head(5)
-    rec_numeric_data = feature_data.loc[recommendations.index, numerical_cols]
+    recommendations = recommendations.merge(feature_data, left_index=True, right_index=True)
+
+    # Get numeric data for recommendations
+    rec_numeric_data = recommendations[numerical_cols]
 
     # Create a radar chart
     categories = numerical_cols
@@ -87,11 +96,12 @@ def plot_radar_chart(user_profile, recommendations, feature_data):
     ax.plot(angles, user_profile, color='blue', linewidth=2, linestyle='solid', label='User Profile')
 
     # Plot recommendations
-    for idx, row in rec_numeric_data.iterrows():
-        movie_profile = row.values.flatten().tolist()
+    for idx, row in recommendations.iterrows():
+        movie_profile = row[categories].values.flatten().tolist()
         movie_profile += movie_profile[:1]
-        ax.plot(angles, movie_profile, linewidth=1, linestyle='solid', label=f"{recommendations.loc[idx, 'movie']}",
-                color=np.random.rand(3, ))
+        similarity_score = cosine_similarity([user_profile[:-1]], [row[categories]])[0][0] * 100
+        ax.plot(angles, movie_profile, linewidth=1, linestyle='solid',
+                label=f"{row['movie']} ({similarity_score:.1f}%)", color=np.random.rand(3, ))
 
     # Add labels and title
     ax.set_theta_offset(pi / 2)
@@ -103,17 +113,16 @@ def plot_radar_chart(user_profile, recommendations, feature_data):
     plt.show()
 
 
-def plot_scatter_plot(user_profile, recommendations, feature_data, distances):
+def plot_scatter_plot(user_profile, recommendations, feature_data):
+    # Merge recommendations with feature_data to ensure alignment
+    recommendations = recommendations.merge(feature_data, left_index=True, right_index=True).reset_index(drop=True)
+
     # Apply PCA to reduce dimensions to 2
     pca = PCA(n_components=2)
     pca.fit(feature_data)
-
-    # Extend user profile with zeros for keyword features
-    extended_user_profile = np.concatenate((user_profile, np.zeros(len(feature_data.columns) - len(user_profile))))
-    user_profile_2d = pca.transform([extended_user_profile])
-
-    rec_feature_data = feature_data.loc[recommendations.index]
-    rec_feature_data_2d = pca.transform(rec_feature_data)
+    user_profile_2d = pca.transform(
+        [np.concatenate((user_profile, np.zeros(len(feature_data.columns) - len(user_profile))))])
+    rec_feature_data_2d = pca.transform(recommendations[feature_data.columns])
 
     # Create a scatter plot
     plt.figure(figsize=(14, 10))
@@ -132,24 +141,30 @@ def plot_scatter_plot(user_profile, recommendations, feature_data, distances):
     for idx, (x, y) in enumerate(rec_feature_data_2d):
         plt.plot([user_profile_2d[0, 0], x], [user_profile_2d[0, 1], y], 'k-', lw=0.5)
 
-        # Display distance
+        # Calculate similarity score
+        similarity_score = \
+        cosine_similarity([np.concatenate((user_profile, np.zeros(len(feature_data.columns) - len(user_profile))))],
+                          [recommendations.iloc[idx][feature_data.columns]])[0][0] * 100
+
+        # Display similarity score
         mid_x = (user_profile_2d[0, 0] + x) / 2
         mid_y = (user_profile_2d[0, 1] + y) / 2
-        plt.text(mid_x, mid_y, f"{distances[idx]:.2f}", fontsize=8)
+        plt.text(mid_x, mid_y, f"{similarity_score:.1f}%", fontsize=8)
 
     # Annotate movie titles with different colors
-    for i, (_, row) in enumerate(recommendations.iterrows()):
+    for i, row in recommendations.iterrows():
         plt.text(rec_feature_data_2d[i, 0], rec_feature_data_2d[i, 1], f"{row['movie']} ({row['year']})",
                  horizontalalignment='left', size='medium', color='black', weight='semibold')
 
-    plt.title('Top Movie Recommendations (All Features)')
+    plt.title('Top Movie Recommendations')
     plt.show()
 
 
 if __name__ == '__main__':
     user_id, user_profile, user_data = calculate_scores()
 
-    user_profile = user_profile[1:6]  # Ensure the user profile contains the 5 relevant features (skip age and gender)
+    user_profile = user_profile[1:7]  # Ensure the user profile contains the 6 relevant features (skip age)
+
     # Save to BigQuery with appending new data rather than replacing
     to_gbq(
         user_data,
@@ -157,8 +172,10 @@ if __name__ == '__main__':
         project_id=project_id,
         if_exists="append"
     )
-    recommendations_knn, distances = get_knn_recommendations(user_profile, feature_data, data, 10, 5.0)
+
+    recommendations_similarity = get_recommendations(user_profile, feature_data, data, 10, 5.0)
     print("\n\nTop 10 Movie Recommendations (Rating >= 5):")
-    print(recommendations_knn.to_string(index=False, justify='left'))
-    plot_radar_chart(user_profile, recommendations_knn, feature_data)
-    plot_scatter_plot(user_profile, recommendations_knn, feature_data, distances)
+    print(recommendations_similarity.to_string(index=False, justify='left'))
+
+    plot_radar_chart(user_profile, recommendations_similarity, feature_data)
+    plot_scatter_plot(user_profile, recommendations_similarity, feature_data)
