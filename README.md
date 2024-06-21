@@ -14,7 +14,8 @@ Predictions are made using the following features:
 The Big Five or OCEAN (Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism) model in psychology identifies five broad personality traits: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. These traits are used to describe human personality and predict behavior.
    
 By evaluating the scoring of these traits in users, the algorithm is able to predict the movies that best suit their personality type.   
-The preassumption is that users with similar perosnality traits and gender will more likely prefer movies from specific genres and unique keywords.
+
+The preassumption is that users with similar perosnality traits and gender will more likely prefer movies from specific genres and unique keywords.    
 
 ## myPersonality
   
