@@ -35,6 +35,7 @@ In case we have enough user profiles and their features, we can create a more ad
 ## Sample Data
 
 Below is a sample of the dataset, showing the aggregated Big Five personality traits (each movie represent a combination of personality traits):
+
 | AVG                                                                                        |
 |--------------------------|---------|---------|---------|---------|---------|------|--------|
 | Movie                    | Ope     | Con     | Ext     | Agr     | Neu     | Year | Gender |
