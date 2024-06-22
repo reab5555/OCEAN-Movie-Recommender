@@ -1,7 +1,7 @@
 <img src="Diagrams/icon.webp" width="150" alt="alt text">
 
 # OCEAN-Movie-Recommender
-This is a framework for an algorithm that is able to recommend movies based on the user's Big Five personality traits and movies keywords.  
+This project framework present a recommendation system that recommend movies based on the user's Big Five personality traits and movies keywords.  
 
 Predictions are made using the following features:
 
