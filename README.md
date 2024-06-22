@@ -36,13 +36,13 @@ In case we have enough user profiles and their features, we can create a more ad
 
 Below is a sample of the dataset, showing the aggregated Big Five personality traits (each movie represent a combination of personality traits):
 
-| Movie                    | Ope     | Con     | Ext     | Agr     | Neu     | Year | Gender | Runtime |
-|--------------------------|---------|---------|---------|---------|---------|------|--------|---------|
-| The Shawshank Redemption | 0.2652  | -0.044  | -0.0617 | 0.0167  | 0.1634  | 1994 | 0.504  | 142     |
-| The Godfather            | 0.3176  | -0.0699 | -0.0391 | -0.207  | 0.1539  | 1972 | 0.4016 | 175     |
-| The Dark Knight          | 0.2892  | -0.1655 | -0.1424 | -0.0311 | 0.1253  | 2008 | 0.4491 | 152     |
-| The Godfather Part II    | 0.3743  | 0.0303  | 0.0188  | -0.3198 | 0.1378  | 1974 | 0.3408 | 202     |
-| 12 Angry Men             | 0.5011  | -0.1799 | -0.2688 | -0.1959 | 0.0727  | 1957 | 0.3797 | 96      |
+| Movie                    | Ope     | Con     | Ext     | Agr     | Neu     | Year | Gender |
+|--------------------------|---------|---------|---------|---------|---------|------|--------|
+| The Shawshank Redemption | 0.2652  | -0.044  | -0.0617 | 0.0167  | 0.1634  | 1994 | 0.504  |
+| The Godfather            | 0.3176  | -0.0699 | -0.0391 | -0.207  | 0.1539  | 1972 | 0.4016 |
+| The Dark Knight          | 0.2892  | -0.1655 | -0.1424 | -0.0311 | 0.1253  | 2008 | 0.4491 |
+| The Godfather Part II    | 0.3743  | 0.0303  | 0.0188  | -0.3198 | 0.1378  | 1974 | 0.3408 |
+| 12 Angry Men             | 0.5011  | -0.1799 | -0.2688 | -0.1959 | 0.0727  | 1957 | 0.3797 |
 
 These scores represent the average personality trait levels of users who liked each movie.
 
