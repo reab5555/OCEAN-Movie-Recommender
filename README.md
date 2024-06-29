@@ -48,7 +48,7 @@ These scores represent the average personality trait levels of users who liked e
 
 ----------------------------------------------------------------------------------------------------------------
 
-| Movie          | Keywords                                                                                                                                                                           |
+| Movie          | iMDB Keywords                                                                                                                                                                           |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | The Departed   | police, undercover, boston, massachusetts, gangster, irish-american, crime boss, friends, remake, mobster, organized crime, mafia, undercover cop, mole, state police, police training, realtor |
 | The Green Mile | mentally disabled, based on novel or book, southern usa, psychopath, death row, jail guard, supernatural, great depression, prison guard, jail, electric chair, torture, magic realism, healing, 1930s, abuse of power |
