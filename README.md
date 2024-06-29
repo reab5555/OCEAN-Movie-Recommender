@@ -55,7 +55,7 @@ These scores represent the average personality trait levels of users who liked e
 | The Lion King  | africa, lion, prince, redemption, musical, uncle, remake, grief, king, family, sidekick, live action and animation, father son relationship, live action remake                   |
 | The Pianist    | concert, nazi, resistance, warsaw ghetto, polish resistance, homeland, holocaust (shoah), hunger, world war ii, prisoner of war, ghetto, deportation, jew persecution, liberation, biography, survival, based on memoir or autobiography, pianist, poland |   
 
-Here we can see an example of movies and their keywords.   
+Here we can see an example of movies and their keywords from IMDb.   
 
 ----------------------------------------------------------------------------------------------------------------
 
